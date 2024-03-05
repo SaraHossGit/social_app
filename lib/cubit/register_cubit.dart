@@ -78,7 +78,7 @@ class RegisterCubit extends Cubit<AppStates> {
           'https://image.freepik.com/free-photo/photo-attractive-bearded-young-man-with-cherful-expression-makes-okay-gesture-with-both-hands-likes-something-dressed-red-casual-t-shirt-poses-against-white-wall-gestures-indoor_273609-16239.jpg',
       coverPic:
           'https://image.freepik.com/free-photo/photo-attractive-bearded-young-man-with-cherful-expression-makes-okay-gesture-with-both-hands-likes-something-dressed-red-casual-t-shirt-poses-against-white-wall-gestures-indoor_273609-16239.jpg',
-      bio: "write you bio ...",
+      bio: "write your bio ...",
       uId: uId,
       isEmailVerified: false,
     );
