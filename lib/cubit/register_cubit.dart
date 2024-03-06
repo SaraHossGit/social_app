@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/cubit/app_states.dart';
-import 'package:social_app/layout/home_layout.dart';
+import 'package:social_app/module/profile_screen.dart';
 import 'package:social_app/model/user_model.dart';
 import 'package:social_app/module/login_screen.dart';
 import 'package:social_app/shared/component/constants.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_app/shared/style/colors.dart';
 
+/// General Defaults
 Widget defaultButtonWhite({
   required BuildContext context,
   required String buttonText,
@@ -98,8 +99,8 @@ Widget defaultBackground({
 
         /// Icon
         Positioned(
-          top: 50,
-          left: 12,
+            top: 50,
+            left: 12,
             child: IconButton(onPressed: onIconPressed, icon: Icon(icon))),
       ],
     );
@@ -170,3 +171,92 @@ Widget defaultTextFormField({
 //         ),
 //       ),
 //     );
+
+/// Profile Screen
+Widget profileCoverImage({
+  required BuildContext context,
+  required String coverImg,
+  required String profileImg,
+  required String username,
+}) =>
+    Container(
+      height: 250,
+      child: Stack(
+        alignment: Alignment.bottomLeft,
+        children: [
+          Image.network(
+            coverImg,
+            height: 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(profileImg),
+                ),
+                const SizedBox(width: 20),
+                Text(
+                  username,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+
+Widget statContainer({
+  required BuildContext context,
+  required int stat,
+  required String title,
+}) =>
+    Column(
+      children: [
+        Text(stat.toString(), style: Theme.of(context).textTheme.titleMedium),
+        Text(title),
+      ],
+    );
+
+Widget photoItemBuilder({required String image}) => ClipRRect(
+      borderRadius: BorderRadius.circular(5),
+      child: Image.network(
+        image,
+        width: 100,
+        fit: BoxFit.cover,
+      ),
+    );
+
+Widget photosListBuilder({required List<dynamic> photosList}) => SizedBox(
+      height: 150,
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) =>
+              photoItemBuilder(image: photosList[index]),
+          separatorBuilder: (context, index) => const SizedBox(width: 10),
+          itemCount: photosList.length),
+    );
+
+Widget storyItemBuilder({required String image}) => CircleAvatar(
+      radius: 30,
+      child: CircleAvatar(
+        radius: 28,
+        backgroundImage: NetworkImage(
+          image,
+        ),
+      ),
+    );
+
+Widget storiesListBuilder({required List<dynamic> storiesList}) => SizedBox(
+      height: 60,
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) =>
+              storyItemBuilder(image: storiesList[index]),
+          separatorBuilder: (context, index) => const SizedBox(width: 15),
+          itemCount: 5),
+    );

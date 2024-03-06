@@ -22,16 +22,16 @@ class UserModel {
     this.isEmailVerified,
   });
 
-  UserModel.fromFirebase(Map<String, dynamic> response) {
-    username = response["username"];
-    email = response["email"];
-    phone = response["phone"];
-    dateOfBirth = response["dateOfBirth"];
-    profilePic = response["profilePic"];
-    coverPic = response["coverPic"];
-    bio = response["bio"];
-    uId = response["uId"];
-    isEmailVerified = response["isEmailVerified"];
+  UserModel.fromFirebase(Map<String, dynamic>? response) {
+    username = response?["username"] ?? "";
+    email = response?["email"] ?? "";
+    phone = response?["phone"] ?? "";
+    dateOfBirth = response?["dateOfBirth"] ?? "";
+    profilePic = response?["profilePic"] ?? "";
+    coverPic = response?["coverPic"] ?? "";
+    bio = response?["bio"] ?? "";
+    uId = response?["uId"] ?? "";
+    isEmailVerified = response?["isEmailVerified"] ?? "";
   }
 
   Map<String, dynamic> toFirebase() {
