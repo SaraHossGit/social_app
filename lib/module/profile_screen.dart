@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/cubit/app_states.dart';
 import 'package:social_app/cubit/login_cubit.dart';
+import 'package:social_app/module/edit_profile_screen.dart';
 import 'package:social_app/shared/component/components.dart';
+import 'package:social_app/shared/component/constants.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -75,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: defaultButtonGradient(
                                     context: context,
                                     buttonText: "Edit Profile",
-                                    onPressed: () {}))
+                                    onPressed: ()=>navigate(context: context, requiredScreen: const EditProfileScreen())))
                           ],
                         ),
                         const SizedBox(height: 15),

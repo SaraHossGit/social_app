@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_app/shared/style/colors.dart';
+import 'package:social_app/shared/style/icon_broken.dart';
 
 /// General Defaults
 Widget defaultButtonWhite({
@@ -149,28 +150,37 @@ Widget defaultTextFormField({
       ),
     );
 
-// Widget defaultButton({
-//   required String buttonText,
-//   required VoidCallback onPressed,
-//   double? width,
-//   double? height,
-// }) =>
-//     Container(
-//       width: width,
-//       height: height,
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(15),
-//         color: buttonColor,
-//       ),
-//       child: MaterialButton(
-//         height: height,
-//         onPressed: onPressed,
-//         child: Text(
-//           buttonText,
-//           style: const TextStyle(color: Colors.white, fontSize: 15),
-//         ),
-//       ),
-//     );
+Widget defaultEditButton({size}) => CircleAvatar(
+      radius: size == null ? 15 : size - 3,
+      backgroundColor: Colors.white,
+      child: Center(
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          icon: Icon(
+            IconBroken.Edit,
+            size: size ?? 18,
+            color: primaryColor1,
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
+
+Widget defaultDeleteButton({size}) => CircleAvatar(
+      radius: size == null ? 15 : size - 3,
+      backgroundColor: Colors.white,
+      child: Center(
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          icon: Icon(
+            IconBroken.Delete,
+            size: size ?? 18,
+            color: primaryColor1,
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
 
 /// Profile Screen
 Widget profileCoverImage({
@@ -231,12 +241,33 @@ Widget photoItemBuilder({required String image}) => ClipRRect(
       ),
     );
 
-Widget photosListBuilder({required List<dynamic> photosList}) => SizedBox(
+Widget editPhotoItemBuilder({required String image}) => Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Image.network(
+            image,
+            width: 100,
+            height: 150,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 85.0),
+          child: defaultDeleteButton(),
+        )
+      ],
+    );
+
+Widget photosListBuilder(
+        {required List<dynamic> photosList, bool edit = false}) =>
+    SizedBox(
       height: 150,
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) =>
-              photoItemBuilder(image: photosList[index]),
+          itemBuilder: (context, index) => edit
+              ? editPhotoItemBuilder(image: photosList[index])
+              : photoItemBuilder(image: photosList[index]),
           separatorBuilder: (context, index) => const SizedBox(width: 10),
           itemCount: photosList.length),
     );
@@ -259,4 +290,63 @@ Widget friendsListBuilder({required List<dynamic> friendsList}) => SizedBox(
               friendsItemBuilder(image: friendsList[index]),
           separatorBuilder: (context, index) => const SizedBox(width: 15),
           itemCount: 5),
+    );
+
+/// Edit Profile Screen
+Widget editProfileCoverImage({
+  required BuildContext context,
+  required String coverImg,
+  required String profileImg,
+  required String username,
+}) =>
+    Container(
+      height: 250,
+      child: Stack(
+        alignment: Alignment.bottomLeft,
+        children: [
+          Image.network(
+            coverImg,
+            height: 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: defaultEditButton(),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(profileImg),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60.0),
+                      child: defaultEditButton(),
+                    )
+                  ],
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: TextFormField(
+                    initialValue: username,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white)),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
