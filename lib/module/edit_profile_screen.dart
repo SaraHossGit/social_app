@@ -40,6 +40,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       coverImg: loginCubit.userModel?.coverPic ?? "",
                       profileImg: loginCubit.userModel?.profilePic ?? "",
                       username: loginCubit.userModel?.username ?? ""),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0),
@@ -49,6 +50,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Text("About me",
                             style: Theme.of(context).textTheme.titleLarge),
                         const SizedBox(height: 10),
+
                         TextFormField(
                           initialValue: loginCubit.userModel?.bio ??
                               "Write your Bio here...",
@@ -61,11 +63,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
+
                         Text("Photos",
                             style: Theme.of(context).textTheme.titleLarge),
                         const SizedBox(height: 10),
+
                         photosListBuilder(photosList: photosList, edit: true),
                         const SizedBox(height: 20),
+
                         defaultButtonGradient(
                             context: context,
                             buttonText: "Update",
