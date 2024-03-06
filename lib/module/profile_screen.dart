@@ -20,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     "https://img.freepik.com/free-photo/hesitant-puzzled-unshaven-man-shruggs-shoulders-bewilderment-feels-indecisive-has-bristle-trendy-haircut-dressed-blue-stylish-shirt-isolated-white-wall-clueless-male-poses-indoor_273609-16518.jpg?t=st=1709720663~exp=1709724263~hmac=0cbb319d6bbec22213aedc29e36ca43298275e6d51028bdb139d43a98034db9d&w=900"
   ];
 
-  List<dynamic> storiesList = [
+  List<dynamic> friendsList = [
     "https://img.freepik.com/free-photo/hesitant-puzzled-unshaven-man-shruggs-shoulders-bewilderment-feels-indecisive-has-bristle-trendy-haircut-dressed-blue-stylish-shirt-isolated-white-wall-clueless-male-poses-indoor_273609-16518.jpg?t=st=1709720663~exp=1709724263~hmac=0cbb319d6bbec22213aedc29e36ca43298275e6d51028bdb139d43a98034db9d&w=900",
     "https://img.freepik.com/free-photo/hesitant-puzzled-unshaven-man-shruggs-shoulders-bewilderment-feels-indecisive-has-bristle-trendy-haircut-dressed-blue-stylish-shirt-isolated-white-wall-clueless-male-poses-indoor_273609-16518.jpg?t=st=1709720663~exp=1709724263~hmac=0cbb319d6bbec22213aedc29e36ca43298275e6d51028bdb139d43a98034db9d&w=900",
     "https://img.freepik.com/free-photo/hesitant-puzzled-unshaven-man-shruggs-shoulders-bewilderment-feels-indecisive-has-bristle-trendy-haircut-dressed-blue-stylish-shirt-isolated-white-wall-clueless-male-poses-indoor_273609-16518.jpg?t=st=1709720663~exp=1709724263~hmac=0cbb319d6bbec22213aedc29e36ca43298275e6d51028bdb139d43a98034db9d&w=900",
@@ -101,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             style: Theme.of(context).textTheme.titleLarge),
                         const SizedBox(height: 10),
 
-                        storiesListBuilder(storiesList: storiesList),
+                        friendsListBuilder(friendsList: friendsList),
                       ],
                     ),
                   )

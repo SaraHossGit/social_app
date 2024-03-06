@@ -241,7 +241,7 @@ Widget photosListBuilder({required List<dynamic> photosList}) => SizedBox(
           itemCount: photosList.length),
     );
 
-Widget storyItemBuilder({required String image}) => CircleAvatar(
+Widget friendsItemBuilder({required String image}) => CircleAvatar(
       radius: 30,
       child: CircleAvatar(
         radius: 28,
@@ -251,12 +251,12 @@ Widget storyItemBuilder({required String image}) => CircleAvatar(
       ),
     );
 
-Widget storiesListBuilder({required List<dynamic> storiesList}) => SizedBox(
+Widget friendsListBuilder({required List<dynamic> friendsList}) => SizedBox(
       height: 60,
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) =>
-              storyItemBuilder(image: storiesList[index]),
+              friendsItemBuilder(image: friendsList[index]),
           separatorBuilder: (context, index) => const SizedBox(width: 15),
           itemCount: 5),
     );
