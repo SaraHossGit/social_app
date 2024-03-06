@@ -7,26 +7,28 @@ import 'package:social_app/module/post_screen.dart';
 import 'package:social_app/module/profile_screen.dart';
 import 'package:social_app/shared/style/icon_broken.dart';
 
-class BottomNavBarCubit extends Cubit<AppStates>{
-  BottomNavBarCubit():super(InitState());
-  static BottomNavBarCubit get(context)=>BlocProvider.of(context);
-  int currentIndex=0;
-  List<Widget> screens=[
-    FeedsScreen(),
-    PostScreen(),
-    ChatsScreen(),
-    ProfileScreen(),
+class BottomNavBarCubit extends Cubit<AppStates> {
+  BottomNavBarCubit() : super(InitState());
+
+  static BottomNavBarCubit get(context) => BlocProvider.of(context);
+  int currentIndex = 0;
+  List<Widget> screens = [
+    const FeedsScreen(),
+    const PostScreen(),
+    const ChatsScreen(),
+    const ProfileScreen(),
   ];
-  List<BottomNavigationBarItem> navbarItems=[
-    BottomNavigationBarItem(icon:Icon(IconBroken.Home), label: "Feeds"),
-    BottomNavigationBarItem(icon:Icon(IconBroken.Paper_Upload), label: "Post"),
-    BottomNavigationBarItem(icon:Icon(IconBroken.Chat), label: "Chats"),
-    BottomNavigationBarItem(icon:Icon(IconBroken.Profile), label: "Profile"),
+  List<BottomNavigationBarItem> navbarItems = [
+    const BottomNavigationBarItem(icon: Icon(IconBroken.Home), label: "Feeds"),
+    const BottomNavigationBarItem(
+        icon: Icon(IconBroken.Paper_Upload), label: "Post"),
+    const BottomNavigationBarItem(icon: Icon(IconBroken.Chat), label: "Chats"),
+    const BottomNavigationBarItem(
+        icon: Icon(IconBroken.Profile), label: "Profile"),
   ];
 
-  void changeNavBar(index){
-    currentIndex=index;
+  void changeNavBar(index) {
+    currentIndex = index;
     emit(BottomNavBarChanged());
   }
-
 }
