@@ -7,6 +7,12 @@ ThemeData lightTheme()=>ThemeData(
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: Colors.white,
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: primaryColor1,
+      unselectedItemColor: darkGreyColor,
+      backgroundColor: Colors.black12,
+      type: BottomNavigationBarType.fixed
+    ),
     // appBarTheme: AppBarTheme(
     //   color: darkThemeBG,
     //   iconTheme: const IconThemeData(

@@ -2,6 +2,8 @@ abstract class AppStates {}
 
 class InitState extends AppStates {}
 
+class BottomNavBarChanged extends AppStates {}
+
 class RegisterUserFirebaseLoadingState extends AppStates {}
 class RegisterUserFirebaseSuccessState extends AppStates {}
 class RegisterUserFirebaseErrorState extends AppStates {

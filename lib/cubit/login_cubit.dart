@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/cubit/app_states.dart';
+import 'package:social_app/layout/home_layout.dart';
 import 'package:social_app/module/profile_screen.dart';
 import 'package:social_app/model/user_model.dart';
 import 'package:social_app/shared/component/constants.dart';
@@ -39,7 +40,7 @@ class LoginCubit extends Cubit<AppStates> {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
         await getUserData(uId: value.user?.uid);
-        navigate(context: context, requiredScreen: ProfileScreen());
+        navigate(context: context, requiredScreen: HomeLayout());
         emit(LoginUserFirebaseSuccessState());
       });
     } on FirebaseAuthException catch (e) {

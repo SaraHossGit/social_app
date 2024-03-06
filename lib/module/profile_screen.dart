@@ -38,77 +38,75 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         LoginCubit loginCubit = LoginCubit.get(context);
 
-        return Scaffold(
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  profileCoverImage(
-                      context: context,
-                      coverImg: loginCubit.userModel?.coverPic ?? "",
-                      profileImg: loginCubit.userModel?.profilePic ?? "",
-                      username: loginCubit.userModel?.username ?? ""),
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                profileCoverImage(
+                    context: context,
+                    coverImg: loginCubit.userModel?.coverPic ?? "",
+                    profileImg: loginCubit.userModel?.profilePic ?? "",
+                    username: loginCubit.userModel?.username ?? ""),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                        /// Profile Header
-                        Row(
-                          children: [
-                            statContainer(
-                                context: context, title: "Posts", stat: 128),
-                            const SizedBox(width: 10),
-                            statContainer(
-                                context: context,
-                                title: "Following",
-                                stat: 1234),
-                            const SizedBox(width: 10),
-                            statContainer(
-                                context: context,
-                                title: "Follower",
-                                stat: 4567),
-                            const SizedBox(width: 30),
-                            Expanded(
-                                child: defaultButtonGradient(
-                                    context: context,
-                                    buttonText: "Edit Profile",
-                                    onPressed: ()=>navigate(context: context, requiredScreen: const EditProfileScreen())))
-                          ],
-                        ),
-                        const SizedBox(height: 15),
+                      /// Profile Header
+                      Row(
+                        children: [
+                          statContainer(
+                              context: context, title: "Posts", stat: 128),
+                          const SizedBox(width: 10),
+                          statContainer(
+                              context: context,
+                              title: "Following",
+                              stat: 1234),
+                          const SizedBox(width: 10),
+                          statContainer(
+                              context: context,
+                              title: "Follower",
+                              stat: 4567),
+                          const SizedBox(width: 30),
+                          Expanded(
+                              child: defaultButtonGradient(
+                                  context: context,
+                                  buttonText: "Edit Profile",
+                                  onPressed: ()=>navigate(context: context, requiredScreen: const EditProfileScreen())))
+                        ],
+                      ),
+                      const SizedBox(height: 15),
 
-                        Text("About me",
-                            style: Theme.of(context).textTheme.titleLarge),
-                        const SizedBox(height: 10),
+                      Text("About me",
+                          style: Theme.of(context).textTheme.titleLarge),
+                      const SizedBox(height: 10),
 
-                        Text(
-                            loginCubit.userModel?.bio ??
-                                "Write your Bio here...",
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        const SizedBox(height: 15),
+                      Text(
+                          loginCubit.userModel?.bio ??
+                              "Write your Bio here...",
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      const SizedBox(height: 15),
 
-                        Text("Photos",
-                            style: Theme.of(context).textTheme.titleLarge),
-                        const SizedBox(height: 10),
+                      Text("Photos",
+                          style: Theme.of(context).textTheme.titleLarge),
+                      const SizedBox(height: 10),
 
-                        photosListBuilder(photosList: photosList),
-                        const SizedBox(height: 15),
+                      photosListBuilder(photosList: photosList),
+                      const SizedBox(height: 15),
 
-                        Text("Friends",
-                            style: Theme.of(context).textTheme.titleLarge),
-                        const SizedBox(height: 10),
+                      Text("Friends",
+                          style: Theme.of(context).textTheme.titleLarge),
+                      const SizedBox(height: 10),
 
-                        friendsListBuilder(friendsList: friendsList),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                      friendsListBuilder(friendsList: friendsList),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         );
