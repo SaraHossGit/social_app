@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       /// Textfields
                       defaultTextFormField(
+                          context: context,
                           labelText: "Email",
                           controller: emailController,
                           validator: (value) {}),
@@ -64,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 8),
 
                       defaultTextFormField(
+                          context: context,
                           labelText: "Password",
                           controller: passController,
                           isPassword: true,

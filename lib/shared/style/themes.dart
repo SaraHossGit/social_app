@@ -38,6 +38,8 @@ ThemeData lightTheme()=>ThemeData(
           fontFamily: "AvenirHeavy", color: Colors.white, height: 1),
       displayMedium: TextStyle(
           fontFamily: "AvenirHeavy", color: Colors.white, height: 1),
+      displaySmall: TextStyle(
+          fontFamily: "AvenirHeavy", color: Colors.white, height: 1),
       headlineLarge: TextStyle(color: Colors.white),
       labelLarge: TextStyle(color: Colors.white),
       bodyMedium: TextStyle(color: Colors.grey, fontFamily: "AvenirLight"),
@@ -47,5 +49,7 @@ ThemeData lightTheme()=>ThemeData(
       titleLarge:
       TextStyle(color: Colors.white, fontFamily: "AvenirHeavy"),
       titleMedium:
+      TextStyle(color: Colors.white, fontFamily: "AvenirHeavy"),
+      titleSmall:
       TextStyle(color: Colors.white, fontFamily: "AvenirHeavy"),
     ));

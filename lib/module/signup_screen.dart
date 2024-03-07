@@ -54,6 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                       /// Textfields
                       defaultTextFormField(
+                          context: context,
                           labelText: "Username",
                           controller: usernameController,
                           validator: (value) {}),
@@ -61,6 +62,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 8),
 
                       defaultTextFormField(
+                          context: context,
                           labelText: "Email",
                           controller: emailController,
                           validator: (value) {}),
@@ -68,6 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 8),
 
                       defaultTextFormField(
+                          context: context,
                           labelText: "Phone",
                           controller: phoneController,
                           validator: (value) {}),
@@ -75,6 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 8),
 
                       defaultTextFormField(
+                          context: context,
                           labelText: "Date of Birth",
                           controller: dateOfBirthController,
                           validator: (value) {}),
@@ -82,6 +86,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const SizedBox(height: 8),
 
                       defaultTextFormField(
+                          context: context,
                           labelText: "Password",
                           controller: passwordController,
                           isPassword: true,

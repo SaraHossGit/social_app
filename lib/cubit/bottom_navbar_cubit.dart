@@ -13,7 +13,7 @@ class BottomNavBarCubit extends Cubit<AppStates> {
   static BottomNavBarCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<Widget> screens = [
-    const FeedsScreen(),
+    FeedsScreen(),
     const PostScreen(),
     const ChatsScreen(),
     const ProfileScreen(),

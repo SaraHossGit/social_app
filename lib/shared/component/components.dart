@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_app/model/post_model.dart';
 import 'package:social_app/shared/style/colors.dart';
 import 'package:social_app/shared/style/icon_broken.dart';
 
@@ -107,24 +108,34 @@ Widget defaultBackground({
     );
 
 Widget defaultTextFormField({
+  required BuildContext context,
   required String labelText,
   required TextEditingController controller,
   required String? Function(String?)? validator,
+  Color? fillColor,
+  double? height,
+  IconData? prefixIcon,
   VoidCallback? onSuffixPressed,
   bool isPasswordObscure = false,
   bool isPassword = false,
 }) =>
     SizedBox(
-      height: 50,
+      height: height ?? 50,
+      width: double.infinity,
       child: TextFormField(
         obscureText: isPasswordObscure,
         decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          prefixIcon: Icon(
+            prefixIcon,
+            color: Colors.white,
+          ),
+          contentPadding: const EdgeInsets.only(left: 20, top: 5, bottom: 5),
           label: Text(
             labelText,
-            style:
-                const TextStyle(color: Colors.white, fontFamily: "AvenirLight"),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: Colors.white),
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
@@ -133,7 +144,7 @@ Widget defaultTextFormField({
               borderRadius: BorderRadius.circular(30),
               borderSide:
                   const BorderSide(color: Colors.transparent, width: 1)),
-          fillColor: Colors.white10.withOpacity(0.5),
+          fillColor: fillColor ?? Colors.white10.withOpacity(0.5),
           filled: true,
           suffixIcon: isPassword
               ? IconButton(
@@ -176,6 +187,32 @@ Widget defaultDeleteButton({size}) => CircleAvatar(
             IconBroken.Delete,
             size: size ?? 18,
             color: primaryColor1,
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
+
+Widget defaultIconButton({required IconData icon}) => Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              primaryColor2,
+              primaryColor2,
+              primaryColor1,
+              primaryColor1,
+            ],
+          ),
+          shape: BoxShape.circle),
+      child: Center(
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          icon: Icon(
+            icon,
+            size: 25,
+            color: Colors.white,
           ),
           onPressed: () {},
         ),
@@ -336,7 +373,7 @@ Widget editProfileCoverImage({
                 Expanded(
                   child: TextFormField(
                     initialValue: username,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)),
                       focusedBorder: OutlineInputBorder(
@@ -349,4 +386,200 @@ Widget editProfileCoverImage({
           )
         ],
       ),
+    );
+
+/// Feeds Screen
+Widget storyItemBuilder(
+        {required String image, required BuildContext context}) =>
+    Column(
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: 64,
+              height: 64,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      primaryColor2,
+                      primaryColor2,
+                      primaryColor1,
+                      primaryColor1,
+                    ],
+                  ),
+                  shape: BoxShape.circle),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: CircleAvatar(
+                radius: 30,
+                backgroundColor: secondaryColor,
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundImage: NetworkImage(
+                    image,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Container(
+            width: 70,
+            child: Text(
+              "Mildred Miles James",
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  height: 1, overflow: TextOverflow.ellipsis, fontSize: 10),
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ))
+      ],
+    );
+
+Widget storiesListBuilder({required List<dynamic> storiesList}) => SizedBox(
+      height: 105,
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) =>
+              storyItemBuilder(image: storiesList[index], context: context),
+          separatorBuilder: (context, index) => const SizedBox(width: 15),
+          itemCount: 5),
+    );
+
+Widget postItemBuilder(
+        {required BuildContext context,
+        required PostModel postModel,
+        required TextEditingController commentController}) =>
+    Card(
+      color: secondaryColor,
+      shadowColor: Colors.black,
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            /// Post Header
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: secondaryColor,
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(
+                      postModel.profileImg ?? "",
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        postModel.username ?? "",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(postModel.date ?? "")
+                    ],
+                  ),
+                ),
+                IconButton(
+                    onPressed: () {}, icon: const Icon(IconBroken.More_Circle))
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            /// Post Body
+            Text(
+              postModel.postBody ?? "",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.network(postModel.postImg ?? ""),
+            ),
+
+            /// Post Trailer
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                    child: defaultTextFormField(
+                        context: context,
+                        labelText: "Comment",
+                        fillColor: darkGreyColor,
+                        height: 40,
+                        controller: commentController,
+                        validator: (value) {})),
+                const SizedBox(width: 6),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: 55,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Heart,
+                          color: primaryColor1,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          "${postModel.postLikesCount ?? 0}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: primaryColor1),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 6),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: 55,
+                    child: Row(
+                      children: [
+                        Icon(
+                          IconBroken.Chat,
+                          color: primaryColor2,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          "${postModel.postCommentsCount ?? 0}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: primaryColor2),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+
+Widget postsListBuilder(
+        {required TextEditingController commentController,
+        required List<dynamic> postsList}) =>
+    Expanded(
+      child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) => postItemBuilder(
+              context: context,
+              postModel: postsList[index],
+              commentController: commentController),
+          separatorBuilder: (context, index) => const SizedBox(height: 10),
+          itemCount: postsList.length),
     );

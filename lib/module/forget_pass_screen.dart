@@ -38,6 +38,7 @@ class ForgetPasswordScreen extends StatelessWidget {
 
                 /// Textfields
                 defaultTextFormField(
+                    context: context,
                     labelText: "Your email",
                     controller: emailController,
                     validator: (value) {}),
